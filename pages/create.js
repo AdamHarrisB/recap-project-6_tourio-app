@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Form from "../components/Form";
 import { StyledLink } from "../components/StyledLink";
 import useSWR from "swr";
-import dbConnect from "@/lib/_db_Connect";
+import dbConnect from "@/db/_db_Connect";
 import Place from "@/db/models/tourio";
 
 const StyledBackLink = styled(StyledLink)`
