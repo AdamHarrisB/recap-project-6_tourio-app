@@ -31,7 +31,7 @@ export default function Form({ onSubmit, formName, defaultData }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(productData),
+      body: JSON.stringify(placeData),
     });
     if (response.ok) {
       mutate();

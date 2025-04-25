@@ -1,4 +1,4 @@
-import dbConnect from "@/db/_db_Connect";
+import dbConnect from "@/lib/_db_Connect";
 import Place from "@/db/models/tourio";
 
 export default async function handler(request, response) {
