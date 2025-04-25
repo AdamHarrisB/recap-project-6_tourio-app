@@ -1,9 +1,10 @@
-import dbConnect from "@/lib/_db_Connect";
+import dbConnect from "@/db/connect";
 import Place from "@/db/models/tourio";
 
 export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
+  
   if (request.method === "GET") {
    const place= await Place.findById(id) 
   if (!place){
