@@ -10,6 +10,17 @@ export const StyledButton = styled.button`
   font-weight: bold;
   border: none;
   font-size: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 
   ${({ $variant }) =>
     $variant === "delete" &&

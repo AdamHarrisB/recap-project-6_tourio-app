@@ -25,22 +25,34 @@ export default function Form({ onSubmit, formName, defaultData }) {
   const {mutate}= useSWR("@/pages/api/places/index");
   async function handleSubmit(event) {
     event.preventDefault();
-    const form  = event.target;
-    const response = await fetch ("@/pages/api/places/index",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(placeData),
-    });
-    if (response.ok) {
-      mutate();
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Only make the API call if this is a create form (no defaultData)
+    if (!defaultData) {
+      try {
+        const response = await fetch("/api/places", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        if (response.ok) {
+          mutate();
+        }
+      } catch (error) {
+        console.error("Error creating place:", error);
+      }
     }
+    
+    // Always call the onSubmit prop with the form data
+    onSubmit(data);
+    
+    // Reset form and focus on name field
     form.reset();
     form.elements.name.focus();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    onSubmit(data);
   }
   return (
     <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
