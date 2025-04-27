@@ -40,7 +40,27 @@ export default function DetailsPage() {
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
   async function deletePlace() {
-    console.log("Deleting place ...");
+    if (window.confirm("Are you sure you want to delete this place?")) {
+      try {
+        console.log("Deleting place with ID:", id);
+        const response = await fetch(`/api/places/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        
+        if (!response.ok) {
+          throw new Error("Failed to delete place");
+        }
+        
+        console.log("Place deleted successfully");
+        router.push("/");
+      } catch (error) {
+        console.error("Error deleting place:", error);
+        alert("Failed to delete place. Please try again.");
+      }
+    }
   }
 
   return (
