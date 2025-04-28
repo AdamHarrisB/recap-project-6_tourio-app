@@ -82,7 +82,7 @@ export default function DetailsPage() {
       <h2>
         {place.name}, {place.location}
       </h2>
-      <StyledLocationLink href={place.mapURL}>
+      <StyledLocationLink href={place.mapUrl}>
         Location on Google Maps
       </StyledLocationLink>
       <p>{place.description}</p>
