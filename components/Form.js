@@ -23,6 +23,7 @@ export const Label = styled.label`
 //updating submit handler
 export default function Form({ onSubmit, formName, defaultData }) {
   const {mutate}= useSWR("@/pages/api/places/index");
+  
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -84,7 +85,7 @@ export default function Form({ onSubmit, formName, defaultData }) {
       <Input
       // required
         id="map-url"
-        name="mapUrl"
+        name="mapURL"
         type="text"
         defaultValue={defaultData?.mapUrl}
       />
